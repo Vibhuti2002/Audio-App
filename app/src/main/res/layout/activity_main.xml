@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:layout_marginVertical="2dp"
+    android:layout_marginHorizontal="3dp"
+    android:background="@color/white"
+    android:backgroundTint="@color/white">
+
+    <TextView
+        android:id="@+id/tvHead"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Listen To Your Favorite Audio"
+        android:textColor="#3E3E3E"
+        android:textSize="32sp"
+        android:layout_marginHorizontal="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingBottom="15dp"/>
+
+
+    <View
+        android:id="@+id/viewTrack1"
+        android:layout_width="0dp"
+        android:layout_height="97dp"
+        android:background="@drawable/view_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvHead"
+        android:layout_marginVertical="5dp"
+        android:layout_marginHorizontal="15dp"
+
+        />
+    <TextView
+        android:id="@+id/tv01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="01"
+        android:textSize="35sp"
+        android:fontFamily="@font/nunito_bold"
+        android:textColor="#C12E20"
+        app:layout_constraintBottom_toBottomOf="@+id/viewTrack1"
+        app:layout_constraintStart_toStartOf="@id/viewTrack1"
+        app:layout_constraintTop_toTopOf="@id/viewTrack1" />
+    <TextView
+        android:id="@+id/tvTrack1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/tv01"
+        app:layout_constraintTop_toTopOf="@id/viewTrack1"
+        android:layout_margin="5dp"
+        android:text="Drop It"
+        android:paddingHorizontal="15dp"
+        android:textSize="25sp"
+        android:fontFamily="@font/nunito_bold"
+        android:textColor="#2E2E2E"
+        android:paddingTop="8dp"
+        />
+    <TextView
+        android:id="@+id/tvArtist1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Artist • 1:39"
+        android:textSize="19sp"
+        android:textColor="#3E3E3E"
+        android:paddingHorizontal="15dp"
+        app:layout_constraintStart_toStartOf="@id/tvTrack1"
+        app:layout_constraintTop_toBottomOf="@id/tvTrack1"
+        />
+
+
+    <View
+        android:id="@+id/viewTrack2"
+        android:layout_width="0dp"
+        android:layout_height="97dp"
+        android:background="@drawable/view_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewTrack1"
+        android:layout_marginVertical="5dp"
+        android:layout_marginHorizontal="15dp"
+        />
+
+    <TextView
+        android:id="@+id/tv02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="02"
+        android:textSize="35sp"
+        android:fontFamily="@font/nunito_bold"
+        android:textColor="#C12E20"
+        app:layout_constraintBottom_toBottomOf="@+id/viewTrack2"
+        app:layout_constraintStart_toStartOf="@id/viewTrack2"
+        app:layout_constraintTop_toTopOf="@id/viewTrack2" />
+
+    <TextView
+        android:id="@+id/tvTrack2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/tv02"
+        app:layout_constraintTop_toTopOf="@id/viewTrack2"
+        android:layout_margin="5dp"
+        android:text="Magical Music"
+        android:paddingHorizontal="15dp"
+        android:textSize="25sp"
+        android:fontFamily="@font/nunito_bold"
+        android:textColor="#2E2E2E"
+        android:paddingTop="8dp"
+        />
+    <TextView
+        android:id="@+id/tvArtist2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Artist • 1:42"
+        android:textSize="19sp"
+        android:textColor="#3E3E3E"
+        android:paddingHorizontal="15dp"
+        app:layout_constraintStart_toStartOf="@id/tvTrack2"
+        app:layout_constraintTop_toBottomOf="@id/tvTrack2"
+        />
+
+
+    <View
+        android:id="@+id/viewTrack3"
+        android:layout_width="0dp"
+        android:layout_height="97dp"
+        android:background="@drawable/view_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewTrack2"
+        android:layout_marginVertical="5dp"
+        android:layout_marginHorizontal="15dp"
+        />
+
+    <TextView
+        android:id="@+id/tv03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="03"
+        android:textSize="35sp"
+        android:fontFamily="@font/nunito_bold"
+        android:textColor="#C12E20"
+        app:layout_constraintBottom_toBottomOf="@+id/viewTrack3"
+        app:layout_constraintStart_toStartOf="@id/viewTrack3"
+        app:layout_constraintTop_toTopOf="@id/viewTrack3" />
+
+    <TextView
+        android:id="@+id/tvTrack3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/tv03"
+        app:layout_constraintTop_toTopOf="@id/viewTrack3"
+        android:layout_margin="5dp"
+        android:text="House Vibe"
+        android:paddingHorizontal="15dp"
+        android:textSize="25sp"
+        android:fontFamily="@font/nunito_bold"
+        android:textColor="#2E2E2E"
+        android:paddingTop="8dp"
+        />
+    <TextView
+        android:id="@+id/tvArtist3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Artist • 1:49"
+        android:textSize="19sp"
+        android:textColor="#3E3E3E"
+        android:paddingHorizontal="15dp"
+        app:layout_constraintStart_toStartOf="@id/tvTrack3"
+        app:layout_constraintTop_toBottomOf="@id/tvTrack3"
+        />
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bPause"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/pause_circle"
+        android:visibility="invisible"
+        />
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:paddingBottom="10dp"
+        android:progressTint="#D93C2D"
+        android:progressBackgroundTint="@color/black"
+        android:progressBackgroundTintMode="add"
+        android:thumbTint="#D93C2D"
+        app:layout_constraintBottom_toTopOf="@id/bPlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bPlay"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/play_circle"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="10dp"
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bPrevious"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        app:layout_constraintEnd_toStartOf="@id/bPlay"
+        android:background="@drawable/previous"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/seekBar"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bNext"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:background="@drawable/next"
+        app:layout_constraintStart_toEndOf="@id/bPlay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/seekBar"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "575915431139",
+    "project_id": "audio-app-8356e",
+    "storage_bucket": "audio-app-8356e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575915431139:android:9186b6d4fe1fd6da2da1d6",
+        "android_client_info": {
+          "package_name": "com.audioapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "575915431139-r0eintb8n4qoanfhgui38q90hrknlgd5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.audioapp",
+            "certificate_hash": "97cac77738954b00bc919ddb342facb9465edc20"
+          }
+        },
+        {
+          "client_id": "575915431139-6ko7pit9o4o1dk0e2gcilvem64u05mi6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWN0ujF1y2Sy-IEYa3c8zfsNSxXNu47So"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "575915431139-6ko7pit9o4o1dk0e2gcilvem64u05mi6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
