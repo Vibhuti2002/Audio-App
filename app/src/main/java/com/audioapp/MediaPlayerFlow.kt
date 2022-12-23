@@ -39,11 +39,17 @@ class MediaPlayerFlow {
     fun seekTo(p1: Int){
         mediaPlayer.seekTo(p1)
     }
+
     fun seekProgress(seekBar: SeekBar) : Int{
         runnable = Runnable {
             seekBar.progress = mediaPlayer.currentPosition
             handler.postDelayed(runnable, 1000)
         }
+        handler.postDelayed(runnable, 1000)
+//        if(mediaPlayer!=null){
+//            currentPosition = mediaPlayer.currentPosition / 1000
+//            seekBar.progress = currentPosition
+//        }
         return seekBar.progress
     }
 

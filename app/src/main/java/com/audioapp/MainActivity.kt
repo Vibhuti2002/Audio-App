@@ -42,22 +42,22 @@ class MainActivity : AppCompatActivity() {
         }
         binding.viewTrack2.setOnClickListener {
             playAudio("Cooking.mp3", mediaPlayerFlow)
-            binding.seekBar.max = mediaPlayerFlow.duration()
+//            binding.seekBar.max = mediaPlayerFlow.duration()
         }
         binding.viewTrack3.setOnClickListener {
             playAudio("House Vibe.mp3", mediaPlayerFlow)
-            binding.seekBar.max = mediaPlayerFlow.duration()
+//            binding.seekBar.max = mediaPlayerFlow.duration()
         }
         binding.bPause.setOnClickListener { 
             mediaPlayerFlow.pause()
-//            binding.bPause.visibility = View.INVISIBLE
-//            binding.bPlay.visibility = View.VISIBLE
+            binding.bPause.visibility = View.INVISIBLE
+            binding.bPlay.visibility = View.VISIBLE
         }
 
         binding.bPlay.setOnClickListener {
             mediaPlayerFlow.resume()
-//            binding.bPlay.visibility = View.INVISIBLE
-//            binding.bPause.visibility = View.VISIBLE
+            binding.bPlay.visibility = View.INVISIBLE
+            binding.bPause.visibility = View.VISIBLE
         }
 
         binding.seekBar.progress = mediaPlayerFlow.seekProgress(binding.seekBar)
@@ -91,28 +91,26 @@ class MainActivity : AppCompatActivity() {
                 val audioUri = Uri.fromFile(audioFile)
                 CoroutineScope(Dispatchers.Main).launch {
                     mediaPlayerFlow.play(this@MainActivity, audioUri).collect {
+                        binding.seekBar.max = mediaPlayerFlow.duration()
+                        binding.seekBar.progress = mediaPlayerFlow.seekProgress(binding.seekBar)
+                        binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+
+                            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                                if(p2){
+                                    mediaPlayerFlow.seekTo(p1)
+                                }
+                            }
+                            override fun onStartTrackingTouch(p0: SeekBar?) {
+                            }
+                            override fun onStopTrackingTouch(p0: SeekBar?) {
+                            }
+                        })
                     }
                 }
             } else {
                 saveAudioFileFromFirebaseToCache(mediaPlayerFlow, this, audio)
             }
-            binding.seekBar.max = mediaPlayerFlow.duration()
-            binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
 
-                override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                    if(p2){
-                        mediaPlayerFlow.seekTo(p1)
-                    }
-                }
-
-                override fun onStartTrackingTouch(p0: SeekBar?) {
-                }
-
-                override fun onStopTrackingTouch(p0: SeekBar?) {
-
-                }
-
-            })
         }
 
     }
@@ -204,7 +202,20 @@ class MainActivity : AppCompatActivity() {
                 progress.dismiss()
                 CoroutineScope(Dispatchers.Main).launch {
                     mediaPlayerFlow.play(context, audioUri).collect {
-                        Toast.makeText(context,"Be focused",Toast.LENGTH_SHORT).show()
+                        binding.seekBar.max = mediaPlayerFlow.duration()
+                        binding.seekBar.progress = mediaPlayerFlow.seekProgress(binding.seekBar)
+                        binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+
+                            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                                if(p2){
+                                    mediaPlayerFlow.seekTo(p1)
+                                }
+                            }
+                            override fun onStartTrackingTouch(p0: SeekBar?) {
+                            }
+                            override fun onStopTrackingTouch(p0: SeekBar?) {
+                            }
+                        })
                     }
                 }
             } catch (e: IOException) {
