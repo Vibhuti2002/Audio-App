@@ -46,11 +46,10 @@ class MediaPlayerFlow {
             handler.postDelayed(runnable, 1000)
         }
         handler.postDelayed(runnable, 1000)
-//        if(mediaPlayer!=null){
-//            currentPosition = mediaPlayer.currentPosition / 1000
-//            seekBar.progress = currentPosition
-//        }
         return seekBar.progress
+    }
+    fun reset(){
+        mediaPlayer.reset()
     }
 
     fun duration() : Int{

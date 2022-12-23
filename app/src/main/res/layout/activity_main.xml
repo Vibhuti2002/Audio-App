@@ -191,6 +191,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@drawable/pause_circle"
         android:visibility="invisible"
+        android:layout_marginBottom="10dp"
         />
 
     <androidx.appcompat.widget.AppCompatSeekBar

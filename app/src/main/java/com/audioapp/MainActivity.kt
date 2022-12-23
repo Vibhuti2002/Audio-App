@@ -23,10 +23,13 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import kotlin.properties.Delegates
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
+    private var count = 0
+    private var isPaused : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,53 +40,69 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.viewTrack1.setOnClickListener {
+            count = 1
             playAudio("Drop It.mp3", mediaPlayerFlow)
 
         }
         binding.viewTrack2.setOnClickListener {
+            count =2
             playAudio("Cooking.mp3", mediaPlayerFlow)
-//            binding.seekBar.max = mediaPlayerFlow.duration()
         }
         binding.viewTrack3.setOnClickListener {
+            count = 3
             playAudio("House Vibe.mp3", mediaPlayerFlow)
-//            binding.seekBar.max = mediaPlayerFlow.duration()
         }
-        binding.bPause.setOnClickListener { 
+        binding.bPause.setOnClickListener {
+            isPaused = true
             mediaPlayerFlow.pause()
             binding.bPause.visibility = View.INVISIBLE
             binding.bPlay.visibility = View.VISIBLE
         }
-
         binding.bPlay.setOnClickListener {
+            if(!mediaPlayerFlow.isPlaying()){
+                playAudio("Drop It.mp3", mediaPlayerFlow)
+            }
             mediaPlayerFlow.resume()
             binding.bPlay.visibility = View.INVISIBLE
             binding.bPause.visibility = View.VISIBLE
         }
+        binding.bNext.setOnClickListener {
+            if(count == 3){
+                Toast.makeText(this, "This is last track", Toast.LENGTH_SHORT).show()
+            }
+            if(count==2){
+                count += 1
+                playAudio("House Vibe.mp3", mediaPlayerFlow)
+            }
+            if(count == 1){
+                count += 1
+                playAudio("Cooking.mp3", mediaPlayerFlow)
+            }
+        }
 
+        binding.bPrevious.setOnClickListener {
+            if(count == 1){
+                Toast.makeText(this, "This is first track", Toast.LENGTH_SHORT).show()
+            }
+            if(count == 2){
+                count =1
+                playAudio("Drop It.mp3", mediaPlayerFlow)
+            }
+            if(count==3){
+                count = 2
+                playAudio("Cooking.mp3", mediaPlayerFlow)
+            }
+        }
         binding.seekBar.progress = mediaPlayerFlow.seekProgress(binding.seekBar)
-//        binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
-//
-//            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-//                if(p2){
-//                    mediaPlayerFlow.seekTo(p1)
-//                }
-//            }
-//
-//            override fun onStartTrackingTouch(p0: SeekBar?) {
-//            }
-//
-//            override fun onStopTrackingTouch(p0: SeekBar?) {
-//
-//            }
-//
-//        })
-
 
     }
 
 
 
     private fun playAudio(audio : String, mediaPlayerFlow : MediaPlayerFlow){
+        if(mediaPlayerFlow.isPlaying() || isPaused){
+            mediaPlayerFlow.reset()
+        }
         if (!mediaPlayerFlow.isPlaying()) {
             val cacheDir = this.cacheDir
             val audioFile = File(cacheDir, audio)
@@ -91,6 +110,10 @@ class MainActivity : AppCompatActivity() {
                 val audioUri = Uri.fromFile(audioFile)
                 CoroutineScope(Dispatchers.Main).launch {
                     mediaPlayerFlow.play(this@MainActivity, audioUri).collect {
+                        if(binding.bPlay.visibility == View.VISIBLE){
+                            binding.bPause.visibility = View.VISIBLE
+                            binding.bPlay.visibility = View.INVISIBLE
+                        }
                         binding.seekBar.max = mediaPlayerFlow.duration()
                         binding.seekBar.progress = mediaPlayerFlow.seekProgress(binding.seekBar)
                         binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
@@ -114,73 +137,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-//    private fun playAudio(count: Int) {
-//        mediaPlayer?.stop()
-//        mediaPlayer = null
-//
-//        if(mediaPlayer==null){
-//            if (count==0){
-//                    storageRef = storage.reference.child("Drop it.mp3")
-//                val audioFile = File(cacheDir, "https://firebasestorage.googleapis.com/v0/b/audio-app-8356e.appspot.com/o/House%20Vibe.mp3?alt=media&token=577565da-967f-4405-8d49-10ca1ddfa509")
-//                storageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener{
-//                    bytes -> try {
-//                        val fos = FileOutputStream(audioFile)
-//                    fos.write(bytes)
-//                    fos.close()
-//                    }catch (e:IOException){
-//                        e.printStackTrace()
-//                    }
-//                    Log.d(TAG, "Success")
-//                }.addOnFailureListener{
-//                    exception -> //Handle failure
-//                    Log.d(TAG, "Failed")
-//                }
-////                uri = Uri.parse("https://firebasestorage.googleapis.com/v0/b/audio-app-8356e.appspot.com/o/Drop%20It.mp3?alt=media&token=9474708b-55d4-407f-b477-737cb3aa4658")
-//                mediaPlayer = MediaPlayer.create(this, Uri.fromFile(audioFile))
-////                mediaPlayer!!.setDataSource(this, audioFile.toUri())
-//                mediaPlayer!!.prepare()
-//
-//                binding.seekBar.max = mediaPlayer!!.duration
-//            }
-//
-//            if (count==1){
-//                storageRef = FirebaseStorage.getInstance().reference.child("Cooking.mp3")
-//                uri = Uri.parse("https://firebasestorage.googleapis.com/v0/b/audio-app-8356e.appspot.com/o/Cooking.mp3?alt=media&token=4aebd07b-3573-4f68-b7d5-9518a7bdef3d")
-//                mediaPlayer = MediaPlayer.create(this, uri)
-//
-//            }
-//            if (count==2){
-//                storageRef = FirebaseStorage.getInstance().reference.child("House Vibe.mp3")
-//                uri = Uri.parse("https://firebasestorage.googleapis.com/v0/b/audio-app-8356e.appspot.com/o/House%20Vibe.mp3?alt=media&token=577565da-967f-4405-8d49-10ca1ddfa509")
-//                mediaPlayer = MediaPlayer.create(this, uri)
-//            }
-//        }
-//
-//        mediaPlayer?.start()
-//        binding.bPause.visibility = View.VISIBLE
-//        runnable = Runnable {
-//            binding.seekBar.progress = mediaPlayer!!.currentPosition
-//            handler.postDelayed(runnable, 1000)
-//        }
-//        handler.postDelayed(runnable, 1000)
-//        binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
-//            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-//                if(p2){
-//                    mediaPlayer!!.seekTo(p1)
-//                }
-//            }
-//
-//            override fun onStartTrackingTouch(p0: SeekBar?) {
-//
-//            }
-//
-//            override fun onStopTrackingTouch(p0: SeekBar?) {
-//
-//            }
-//
-//        })
-//        Toast.makeText(this, "Audio Started Playing", Toast.LENGTH_SHORT).show()
-//    }
     private fun saveAudioFileFromFirebaseToCache(
         mediaPlayerFlow: MediaPlayerFlow,
         context: Context,
@@ -202,6 +158,10 @@ class MainActivity : AppCompatActivity() {
                 progress.dismiss()
                 CoroutineScope(Dispatchers.Main).launch {
                     mediaPlayerFlow.play(context, audioUri).collect {
+                        if(binding.bPlay.visibility == View.VISIBLE){
+                            binding.bPause.visibility = View.VISIBLE
+                            binding.bPlay.visibility = View.INVISIBLE
+                        }
                         binding.seekBar.max = mediaPlayerFlow.duration()
                         binding.seekBar.progress = mediaPlayerFlow.seekProgress(binding.seekBar)
                         binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
